@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - TileInfoListManager
   layers:
   - Default
   - TransparentFX

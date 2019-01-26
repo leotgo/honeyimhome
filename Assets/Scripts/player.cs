@@ -7,6 +7,7 @@ public class player : MonoBehaviour
     public Transform pickupPos;
     public pickup carryingObject;
 
+    TileInfoListManager tileInfoListManager;
     Grid grid;
     TileChooser tileChooser;
 
@@ -15,6 +16,8 @@ public class player : MonoBehaviour
         GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
         grid = gridobject.GetComponent<Grid>();
         tileChooser = gridobject.GetComponent<TileChooser>();
+        GameObject tileInfoListManagerObject = GameObject.FindGameObjectsWithTag("TileInfoListManager")[0];
+        tileInfoListManager = tileInfoListManagerObject.GetComponent<TileInfoListManager>();
     }
 
     public void spawnTile()
@@ -24,6 +27,8 @@ public class player : MonoBehaviour
             var tile = Instantiate(carryingObject.prefab);
             Debug.Log(tileChooser.currentTile);
             tile.transform.position = grid.GetCellCenterWorld(tileChooser.currentTile);
+
+            tileInfoListManager.addTile(null, tileChooser.currentTile);
 
             carryingObject.OnConsume();
             carryingObject = null;

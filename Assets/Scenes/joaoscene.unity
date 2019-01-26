@@ -365,6 +365,49 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &818426191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818426193}
+  - component: {fileID: 818426192}
+  m_Layer: 0
+  m_Name: TileInfoListManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &818426192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818426191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13db0c7fed28024eab19c6cbf2f37b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &818426193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818426191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6169848, y: -0.4576498, z: -0.020228103}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358985378
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +419,7 @@ GameObject:
   - component: {fileID: 1358985380}
   - component: {fileID: 1358985379}
   - component: {fileID: 1358985381}
+  - component: {fileID: 1358985382}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Grid
@@ -425,6 +469,18 @@ MonoBehaviour:
   grid: {fileID: 1358985379}
   highlightHex: {fileID: 31609937}
   currentTile: {x: 0, y: 0, z: 0}
+--- !u!114 &1358985382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358985378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13db0c7fed28024eab19c6cbf2f37b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1615915268 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1333084318739709189, guid: c51b48471c1b77746ba36dab81bac792,
