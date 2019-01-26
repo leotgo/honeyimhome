@@ -8,8 +8,8 @@ public class TileChooser : MonoBehaviour
     GameObject player;
 
     public Grid grid;
-    public Vector3 umtileposition;
-    public GameObject highlight_hex;
+    public GameObject highlightHex;
+    public Vector3Int currentTile;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +25,12 @@ public class TileChooser : MonoBehaviour
 
         highlight_hex.transform.position = new Vector3(cellPosition.x, cellPosition.y);
         */
+        
         Vector3Int cellPosition = grid.WorldToCell(player.transform.position);
-        highlight_hex.transform.position = grid.GetCellCenterWorld(cellPosition);
+
+        highlightHex.transform.position = grid.GetCellCenterWorld(cellPosition);
+
+        currentTile = new Vector3Int(cellPosition.x, cellPosition.y, cellPosition.z);
 
     }
 }

@@ -7,27 +7,23 @@ public class player : MonoBehaviour
     public Transform pickupPos;
     public pickup carryingObject;
 
-    // Start is called before the first frame update
-    void Start()
+    Grid grid;
+    TileChooser tileChooser;
+
+    public void Start()
     {
-        
+        GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
+        grid = gridobject.GetComponent<Grid>();
+        tileChooser = gridobject.GetComponent<TileChooser>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            spawnTile();
-        }   
-    }
-
-    void spawnTile()
+    public void spawnTile()
     {
         if(carryingObject != null)
         {
             var tile = Instantiate(carryingObject.prefab);
-            tile.transform.position = transform.position;
+            Debug.Log(tileChooser.currentTile);
+            tile.transform.position = grid.GetCellCenterWorld(tileChooser.currentTile);
 
             carryingObject.OnConsume();
             carryingObject = null;

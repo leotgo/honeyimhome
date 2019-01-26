@@ -8,6 +8,7 @@ public class HoneyTile : HexagonTile
     {
         if(pickup.type == pickup.PickupType.Flower)
         {
+            Destroy(pickup.gameObject);
             Destroy(this.gameObject);
         }
     }

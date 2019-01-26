@@ -9,17 +9,18 @@ public class AbelhaController : MonoBehaviour
     public Vector2 movementvector;
 
     public float strength = 2.0f;
-    [SerializeField]
-    Sprite hexagon;
-
+    
     bool hasMoved = false;
     float moveHorizontal;
     float moveVertical;
 
     MyCharacterActions characterActions;
+    player a_player;
 
     void Start()
     {
+        a_player = GetComponent<player>();
+
         characterActions = new MyCharacterActions();
 
         characterActions.Left.AddDefaultBinding(Key.LeftArrow);
@@ -34,15 +35,17 @@ public class AbelhaController : MonoBehaviour
         characterActions.Down.AddDefaultBinding(Key.DownArrow);
         characterActions.Down.AddDefaultBinding(InputControlType.DPadDown);
 
-        characterActions.Jump.AddDefaultBinding(Key.Space);
-        characterActions.Jump.AddDefaultBinding(InputControlType.Action1);
+        characterActions.Action.AddDefaultBinding(Key.Space);
+        characterActions.Action.AddDefaultBinding(InputControlType.Action1);
+
+        
     }
 
     void Update()
     {
-        if (characterActions.Jump.WasPressed)
+        if (characterActions.Action.WasPressed)
         {
-            PerformJump();
+            PerformAction();
         }
 
         // We use the aggregate filter action here.
@@ -53,9 +56,9 @@ public class AbelhaController : MonoBehaviour
     
     }
 
-    void PerformJump()
+    void PerformAction()
     {
-        // ...
+        a_player.spawnTile();
     }
 
     void PerformMove(float moveHorizontal, float moveVertical)
@@ -72,7 +75,7 @@ public class AbelhaController : MonoBehaviour
          */
 
         Vector3 dir = new Vector3(moveHorizontal, moveVertical, 0f).normalized;
-        Debug.Log(dir * strength);
+        //Debug.Log(dir * strength);
         GetComponent<Rigidbody2D>().AddForce(dir * strength, ForceMode2D.Force);
         hasMoved = true;
 
@@ -85,7 +88,7 @@ public class AbelhaController : MonoBehaviour
         public PlayerAction Right;
         public PlayerAction Up;
         public PlayerAction Down;
-        public PlayerAction Jump;
+        public PlayerAction Action;
         public PlayerOneAxisAction MoveHorizontal;
         public PlayerOneAxisAction MoveVertical;
 
@@ -95,7 +98,7 @@ public class AbelhaController : MonoBehaviour
             Right = CreatePlayerAction("Move Right");
             Up = CreatePlayerAction("Move Up");
             Down = CreatePlayerAction("Move Down");
-            Jump = CreatePlayerAction("Jump");
+            Action = CreatePlayerAction("Action");
             MoveHorizontal = CreateOneAxisPlayerAction(Left, Right);
             MoveVertical = CreateOneAxisPlayerAction(Up, Down);
         }
