@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7771941529269724584}
   - component: {fileID: 9020567052495193642}
-  - component: {fileID: 8780325279826002715}
   - component: {fileID: 8421323323742788904}
   m_Layer: 0
   m_Name: Directional
@@ -81,21 +80,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8780325279826002715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652023487190938412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015d6bf9a3d3a4d4a89a30b8b23e940d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 7
-  tilePrefab: {fileID: 5670764211204999289, guid: 893e8e1acf43c4b4785623db55216084,
-    type: 3}
 --- !u!61 &8421323323742788904
 BoxCollider2D:
   m_ObjectHideFlags: 0
