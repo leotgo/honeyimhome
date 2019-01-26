@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CsvReader : MonoBehaviour
 {
+    public static CsvReader instance;
+
     public struct StringTable
     {
         public string[] columns;
@@ -16,8 +18,8 @@ public class CsvReader : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
         ReadCsvFile();
-        DebugTable(table);
     }
 
     private void ReadCsvFile()
@@ -45,16 +47,15 @@ public class CsvReader : MonoBehaviour
         string cols = string.Empty;
         foreach(string col in t.columns)
         {
-            cols = string.Concat(cols, ", " + col);
+            cols = string.Concat(cols, "~ " + col);
         }
-        Debug.Log(cols);
 
         for(int i = 0; i < t.content.GetLength(0); i++)
         {
             string l = string.Empty;
             for(int j = 0; j < t.content.GetLength(1); j++)
             {
-                l = string.Concat(l, ", " + t.content[i,j]);
+                l = string.Concat(l, " " + t.content[i,j]);
             }
             Debug.Log(l);
         }
