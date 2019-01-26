@@ -16,7 +16,7 @@ public class HoneyTile : HexagonTile
     private void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime > spawnTime)
+        if(currentTime > spawnTime)
         {
             SpawnPickup();
             currentTime = 0f;
