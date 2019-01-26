@@ -16,18 +16,33 @@ public class EntitiesInteractions : MonoBehaviour
         instance = this;
         interactions = new Dictionary<KeyValuePair<entityTypes, entityTypes>, actionTypes>();
         ParseInteractionTable();
+        DebugInteractions();
+    }
+
+    private void DebugInteractions()
+    {
+        foreach(var entry in interactions)
+        {
+            Debug.Log(entry.Key + " => " + entry.Value);
+        }
     }
 
     private void ParseInteractionTable()
     {
         CsvReader.StringTable table = CsvReader.instance.table;
 
+        Debug.Log("Interactions table columns: " + table.columns.Length);
+
         List<entityTypes> types = new List<entityTypes>();
         foreach (string type in table.columns)
         {
-            var parsedtype = ParseToEntityType(type);
-            if(parsedtype != entityTypes.None)
-                types.Add(parsedtype);
+            var parsedType = ParseToEntityType(type);
+            Debug.Log("Parsing type " + type + " to " + parsedType);
+            if (parsedType != entityTypes.None)
+            {
+                
+                types.Add(parsedType);
+            }
         }
 
         for (int i = 0; i < types.Count; i++)
@@ -35,6 +50,7 @@ public class EntitiesInteractions : MonoBehaviour
             for (int j = 0; j < types.Count; j++)
             {
                 var pair = new KeyValuePair<entityTypes, entityTypes>(types[i], types[j]);
+                Debug.Log("Parsing action: (" + types[i] + "," + types[j] + ") => " + table.content[i, j]);
                 var result = ParseToActionType(table.content[i, j]);
                 if (result != actionTypes.None)
                     interactions.Add(pair, result);
@@ -46,24 +62,26 @@ public class EntitiesInteractions : MonoBehaviour
     {
         switch(str)
         {
-            case "Honey":
+            case "Mel":
                 return entityTypes.Honey;
-            case "Wax":
+            case "Cera":
                 return entityTypes.Wax;
             case "Larva":
                 return entityTypes.Larva;
-            case "Bee":
+            case "Abelha":
                 return entityTypes.Bee;
             case "Grid":
                 return entityTypes.Grid;
             case "Polen":
                 return entityTypes.Polen;
-            case "Secretion":
+            case "Secreção":
                 return entityTypes.Secretion;
-            case "Flower":
+            case "Flor":
                 return entityTypes.Flower;
-            case "Jelly":
+            case "Geleia":
                 return entityTypes.Jelly;
+            case "Direcionador":
+                return entityTypes.Directional;
             default:
                 return entityTypes.None;
         }
@@ -90,6 +108,7 @@ public class EntitiesInteractions : MonoBehaviour
 
     public void ProcessInteraction(Entity a, Entity b)
     {
+        Debug.Log("Interaction between " + a + " and " + b);
         var pair = new KeyValuePair<entityTypes, entityTypes>(a.type, b.type);
         actionTypes action;
         if(interactions.TryGetValue(pair, out action))
@@ -98,6 +117,8 @@ public class EntitiesInteractions : MonoBehaviour
             {
                 case actionTypes.Get:
                     {
+                        Debug.Log("Action type = Get");
+
                         pickup p = null;
                         Bee bee = null;
 
@@ -106,13 +127,20 @@ public class EntitiesInteractions : MonoBehaviour
                         else if (b is pickup)
                             p = (pickup)b;
 
-                        if (a is Bee)
+                        if (a is Bee || a is player)
                             bee = (Bee)a;
-                        else if (b is Bee)
+                        else if (b is Bee || a is player)
                             bee = (Bee)b;
 
                         if (p != null && bee != null)
                             Get(bee, p);
+                        else
+                        {
+                            if (bee == null)
+                                Debug.Log(bee + " is null");
+                            else if (p == null)
+                                Debug.Log(p + " is null");
+                        }
                     }
                     break;
 
@@ -166,24 +194,33 @@ public class EntitiesInteractions : MonoBehaviour
                         else if (b is HexagonTile)
                             tile = (HexagonTile)b;
 
-                        if (a is Bee)
+                        if (a is Bee || a is player)
                             bee = (Bee)a;
-                        else if (b is Bee)
+                        else if (b is Bee || a is player)
                             bee = (Bee)b;
 
                         if (bee != null && tile != null)
                             Redirect(bee, tile);
+                        
                     }
                     break;
+                default:
+                    Debug.Log("No action on interaction.");
+                    break;
             }
+        }
+        else
+        {
+            Debug.Log("Did not find interaction between " + a.type + " and " + b.type);
         }
     }
 
     public void Get(Bee bee, pickup p)
     {
+        Debug.Log("Bee " + bee.name + " got pickup " + p.name);
         if (bee.carryingObject == null)
         {
-            p.transform.parent = transform;
+            p.transform.parent = bee.transform;
             p.transform.position = bee.pickupPos.position;
             bee.carryingObject = p.GetComponent<pickup>();
         }
@@ -199,7 +236,7 @@ public class EntitiesInteractions : MonoBehaviour
 
     public void Disappear(Bee bee, HexagonTile tile)
     {
-        if(tile.type == entityTypes.Grid && bee.type != entityTypes.Player)
+        if(tile.type == entityTypes.Grid)
         {
             bee.OnDeath();
         }

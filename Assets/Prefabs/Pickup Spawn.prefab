@@ -93,7 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6039802fb0c186479f824433d0b70dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 5652023487190938412, guid: 4698c7c38e82b9540847acf368e558f4, type: 3}
+  type: 13
+  isDirectional: 0
+  direction: {x: 0, y: 0, z: 0}
+  pickupPrefab: {fileID: 0}
+  spawnTime: 5
 --- !u!61 &6384686007008523355
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -24,15 +24,19 @@ public class AbelhaController : MonoBehaviour
         characterActions = new MyCharacterActions();
 
         characterActions.Left.AddDefaultBinding(Key.LeftArrow);
+        characterActions.Left.AddDefaultBinding(Key.A);
         characterActions.Left.AddDefaultBinding(InputControlType.DPadLeft);
 
         characterActions.Right.AddDefaultBinding(Key.RightArrow);
+        characterActions.Right.AddDefaultBinding(Key.D);
         characterActions.Right.AddDefaultBinding(InputControlType.DPadRight);
 
         characterActions.Up.AddDefaultBinding(Key.UpArrow);
+        characterActions.Up.AddDefaultBinding(Key.W);
         characterActions.Up.AddDefaultBinding(InputControlType.DPadUp);
 
         characterActions.Down.AddDefaultBinding(Key.DownArrow);
+        characterActions.Down.AddDefaultBinding(Key.S);
         characterActions.Down.AddDefaultBinding(InputControlType.DPadDown);
 
         characterActions.Action.AddDefaultBinding(Key.Space);

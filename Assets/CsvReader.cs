@@ -24,20 +24,18 @@ public class CsvReader : MonoBehaviour
 
     private void ReadCsvFile()
     {
-        string[] lines = Regex.Split(csvFile.text, "\n|\r|\r\n");
+        string[] separators = new string[] { "\n\r", "\r\n" };
+        string[] lines = csvFile.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         int numColumns = lines.Length - 1;
         table.content = new string[numColumns, numColumns];
-        for (int i = 0; i < lines.Length; i++)
+        table.columns = lines[0].Split(',');
+        for (int i = 1; i < lines.Length; i++)
         {
-            if (i == 0)
-                table.columns = lines[i].Split(',');
-            else
+            string[] cells = lines[i].Split(',');
+            for(int j = 1; j < cells.Length; j++)
             {
-                string[] cells = lines[i].Split(',');
-                for(int j = 0; j < cells.Length; j++)
-                {
-                    table.content[i-1, j] = cells[j];
-                }
+                Debug.Log("Celula " + (i - 1) + "," + (j - 1) + ":" + cells[j]);
+                table.content[i-1, j-1] = cells[j];
             }
         }
     }

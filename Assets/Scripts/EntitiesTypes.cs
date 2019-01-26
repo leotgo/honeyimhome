@@ -16,7 +16,6 @@ public enum entityTypes
     Directional, // OBJETO direcional, que pode ser botado em um tile pelo jogador
 
     Bee,         // Abelha, que pode pegar objeto
-    Player,      // Jogador
 
     Grid,             // Uma célula no grid sem nada, pode virar tile
     NormalTile,       // Um tile normal (neutro), que não faz nada

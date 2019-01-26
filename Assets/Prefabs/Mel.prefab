@@ -94,9 +94,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5670764211204999289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63dbe4da395f7a47800e35fc1fcbefd, type: 3}
+  m_Script: {fileID: 11500000, guid: a6039802fb0c186479f824433d0b70dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 13
+  isDirectional: 0
+  direction: {x: 0, y: 0, z: 0}
+  pickupPrefab: {fileID: 5652023487190938412, guid: 4698c7c38e82b9540847acf368e558f4,
+    type: 3}
+  spawnTime: 5
 --- !u!60 &5670764211204999288
 PolygonCollider2D:
   m_ObjectHideFlags: 0
