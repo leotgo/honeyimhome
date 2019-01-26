@@ -5,10 +5,16 @@ using InControl;
 
 public class AbelhaController : MonoBehaviour
 {
-    public float speed;             //Floating point variable to store the player's movement speed.
-    public Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    float speed=0.2f;             //Floating point variable to store the player's movement speed.
     public Vector2 movementvector;
 
+    public float strength = 2.0f;
+    [SerializeField]
+    Sprite hexagon;
+
+    bool hasMoved = false;
+    float moveHorizontal;
+    float moveVertical;
 
     MyCharacterActions characterActions;
 
@@ -22,11 +28,11 @@ public class AbelhaController : MonoBehaviour
         characterActions.Right.AddDefaultBinding(Key.RightArrow);
         characterActions.Right.AddDefaultBinding(InputControlType.DPadRight);
 
-        characterActions.Right.AddDefaultBinding(Key.UpArrow);
-        characterActions.Right.AddDefaultBinding(InputControlType.DPadRight);
+        characterActions.Up.AddDefaultBinding(Key.UpArrow);
+        characterActions.Up.AddDefaultBinding(InputControlType.DPadUp);
 
-        characterActions.Right.AddDefaultBinding(Key.DownArrow);
-        characterActions.Right.AddDefaultBinding(InputControlType.DPadRight);
+        characterActions.Down.AddDefaultBinding(Key.DownArrow);
+        characterActions.Down.AddDefaultBinding(InputControlType.DPadDown);
 
         characterActions.Jump.AddDefaultBinding(Key.Space);
         characterActions.Jump.AddDefaultBinding(InputControlType.Action1);
@@ -52,54 +58,23 @@ public class AbelhaController : MonoBehaviour
         // ...
     }
 
-    void PerformMove(float x, float y)
+    void PerformMove(float moveHorizontal, float moveVertical)
     {
+        moveVertical = moveVertical * -1;
+        movementvector = new Vector2(moveHorizontal, moveVertical);
 
-        movementvector = new Vector2(x, y);
-        /*
-        if(y==1)
-        {
-            if (x == 1)
-            {
-               
-            }
-            if (x == -1)
-            {
+        /* 
+         //Use the two store floats to create a new Vector2 variable movement.
+         Vector2 movement = new Vector2(x*(-1), y);
 
-            }
+         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
+         rb2d.AddForce(movement * speed);
+         */
 
-        }
-
-        if (y == -1)
-        {
-            if (x == 1)
-            {
-
-            }
-            if (x == -1)
-            {
-
-            }
-
-        }
-
-        if (x == 1 && y==0)
-        {
-
-        }
-        if (x == -1 && y==0)
-        {
-
-        }
-        */
-
-        //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(x*(-1), y);
-
-        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        rb2d.AddForce(movement * speed);
-
-
+        Vector3 dir = new Vector3(moveHorizontal, moveVertical, 0f).normalized;
+        Debug.Log(dir * strength);
+        GetComponent<Rigidbody2D>().AddForce(dir * strength, ForceMode2D.Force);
+        hasMoved = true;
 
 
     }
