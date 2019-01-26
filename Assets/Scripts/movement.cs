@@ -25,7 +25,7 @@ public class movement : MonoBehaviour
     void Update()
     {
         move();
-        
+
     }
 
     void move()
@@ -35,37 +35,7 @@ public class movement : MonoBehaviour
 
         Vector3 dir = new Vector3(moveHorizontal, moveVertical, 0f).normalized;
 
-        //if (!hasMoved && (Mathf.Abs(moveHorizontal) > 0.1f || (Mathf.Abs(moveVertical) > 0.1f && Mathf.Abs(moveHorizontal) > 0.1f)))
-        //{
-            //if (moveHorizontal > 0f)
-            //{
-            //    // direita cima
-            //    if (moveVertical > 0f)
-            //        dir = new Vector3(1.0f, 1.0f, 0.0f).normalized;
-            //    // direita baixo
-            //    if (moveVertical < 0f)
-            //        dir = new Vector3(1.0f, -1.0f, 0.0f).normalized;
-            //    // direita
-            //    if (Mathf.Abs(moveVertical) < 0.1f)
-            //        dir = new Vector3(1.0f, 0.0f, 0.0f).normalized;
-            //}
-            //else
-            //{
-            //    // direita cima
-            //    if (moveVertical > 0f)
-            //        dir = new Vector3(-1.0f, 1.0f, 0.0f).normalized;
-            //    // direita baixo
-            //    if (moveVertical < 0f)
-            //        dir = new Vector3(-1.0f, -1.0f, 0.0f).normalized;
-            //    // direita
-            //    if (Mathf.Abs(moveVertical) < 0.1f)
-            //        dir = new Vector3(-1.0f, 0.0f, 0.0f).normalized;
-            //}
-
-            Debug.Log(dir * strength);
-            GetComponent<Rigidbody2D>().AddForce(dir * strength, ForceMode2D.Force);
-            hasMoved = true;
-            //ActionHelper.Delay(1f, () => { hasMoved = false; });
-        //}
+        GetComponent<Rigidbody2D>().AddForce(dir * strength, ForceMode2D.Force);
+        hasMoved = true;
     }
 }
