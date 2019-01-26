@@ -2,22 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupSpawn : MonoBehaviour
+public class PickupSpawn : HexagonTile
 {
-    public GameObject pickup;
+    public GameObject pickupPrefab;
+    public float spawnTime = 5f;
+    private float currentTime = 0f;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-       if(collision.gameObject.GetComponent<player>() != null)
+        currentTime = 0f;
+    }
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+        if(currentTime > spawnTime)
         {
-            var player = collision.gameObject.GetComponent<player>();
-            if (player.carryingObject == null)
-            {
-                var p = Instantiate(pickup);
-                p.transform.parent = player.transform;
-                p.transform.position = player.pickupPos.position;
-                player.carryingObject = p.GetComponent<pickup>();
-            }
-        } 
+            SpawnPickup();
+            currentTime = 0f;
+        }
+    }
+
+    private void SpawnPickup()
+    {
+        var pickup = Instantiate(pickupPrefab);
+        pickup.transform.position = transform.position;
     }
 }

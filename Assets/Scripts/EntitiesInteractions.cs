@@ -6,22 +6,16 @@ public class EntitiesInteractions : MonoBehaviour
 {
     public static EntitiesInteractions instance;
 
-    public struct Interaction
-    {
-        public entityTypes entity1;
-        public entityTypes entity2;
-        public entityTypes result;
-    }
-
-    public List<Interaction> interactionResults;
+    // Dicionário de interações
+    // Chave: Representa as duas entidades que engatilharam interação
+    // Valor: Representa a ação resultante da interação entre essas duas entidades
+    public Dictionary<KeyValuePair<entityTypes, entityTypes>, actionTypes> interactions;
 
     private void Start()
     {
         instance = this;
-        interactionResults = new List<Interaction>();
-
+        interactions = new Dictionary<KeyValuePair<entityTypes, entityTypes>, actionTypes>();
         ParseInteractionTable();
-        DebugInteractions();
     }
 
     private void ParseInteractionTable()
@@ -40,21 +34,11 @@ public class EntitiesInteractions : MonoBehaviour
         {
             for (int j = 0; j < types.Count; j++)
             {
-                Interaction interaction;
-                interaction.entity1 = types[i];
-                interaction.entity2 = types[j];
-                interaction.result = ParseToEntityType(table.content[i, j]);
-                if(interaction.result != entityTypes.None)
-                    interactionResults.Add(interaction);
+                var pair = new KeyValuePair<entityTypes, entityTypes>(types[i], types[j]);
+                var result = ParseToActionType(table.content[i, j]);
+                if (result != actionTypes.None)
+                    interactions.Add(pair, result);
             }
-        }
-    }
-
-    private void DebugInteractions()
-    {
-        foreach (var i in interactionResults)
-        {
-            Debug.Log("Interaction ( " + i.entity1 + " , " + i.entity2 + " ) = " + i.result);
         }
     }
 
@@ -62,26 +46,167 @@ public class EntitiesInteractions : MonoBehaviour
     {
         switch(str)
         {
-            case "Mel":
+            case "Honey":
                 return entityTypes.Honey;
-            case "Cera":
+            case "Wax":
                 return entityTypes.Wax;
             case "Larva":
                 return entityTypes.Larva;
-            case "Abelha":
+            case "Bee":
                 return entityTypes.Bee;
-            case "Tile":
+            case "Grid":
                 return entityTypes.Grid;
-            case "Pólen":
+            case "Polen":
                 return entityTypes.Polen;
-            case "Secreção":
+            case "Secretion":
                 return entityTypes.Secretion;
-            case "Flor":
+            case "Flower":
                 return entityTypes.Flower;
-            case "Geleia":
+            case "Jelly":
                 return entityTypes.Jelly;
             default:
                 return entityTypes.None;
         }
+    }
+
+    public actionTypes ParseToActionType(string str)
+    {
+        switch(str)
+        {
+            case "Get":
+                return actionTypes.Get;
+            case "Paint":
+                return actionTypes.Paint;
+            case "Generate":
+                return actionTypes.Generate;
+            case "Disappear":
+                return actionTypes.Disappear;
+            case "Redirect":
+                return actionTypes.Redirect;
+            default:
+                return actionTypes.None;
+        }
+    }
+
+    public void ProcessInteraction(Entity a, Entity b)
+    {
+        var pair = new KeyValuePair<entityTypes, entityTypes>(a.type, b.type);
+        actionTypes action;
+        if(interactions.TryGetValue(pair, out action))
+        {
+            switch(action)
+            {
+                case actionTypes.Get:
+                    {
+                        pickup p = null;
+                        Bee bee = null;
+
+                        if (a is pickup)
+                            p = (pickup)a;
+                        else if (b is pickup)
+                            p = (pickup)b;
+
+                        if (a is Bee)
+                            bee = (Bee)a;
+                        else if (b is Bee)
+                            bee = (Bee)b;
+
+                        if (p != null && bee != null)
+                            Get(bee, p);
+                    }
+                    break;
+
+                case actionTypes.Paint:
+                    {
+                        pickup p = null;
+                        HexagonTile tile = null;
+
+                        if (a is pickup)
+                            p = (pickup)a;
+                        else if (b is pickup)
+                            p = (pickup)b;
+
+                        if (a is HexagonTile)
+                            tile = (HexagonTile)a;
+                        else if (b is HexagonTile)
+                            tile = (HexagonTile)b;
+
+                        if (p != null && tile != null)
+                            Paint(tile, p);
+                    }
+                    break;
+
+                case actionTypes.Disappear:
+                    {
+                        HexagonTile tile = null;
+                        Bee bee = null;
+
+                        if (a is HexagonTile)
+                            tile = (HexagonTile)a;
+                        else if (b is HexagonTile)
+                            tile = (HexagonTile)b;
+
+                        if (a is Bee)
+                            bee = (Bee)a;
+                        else if (b is Bee)
+                            bee = (Bee)b;
+
+                        if (bee != null && tile != null)
+                            Disappear(bee, tile);
+                    }
+                    break;
+
+                case actionTypes.Redirect:
+                    {
+                        HexagonTile tile = null;
+                        Bee bee = null;
+
+                        if (a is HexagonTile)
+                            tile = (HexagonTile)a;
+                        else if (b is HexagonTile)
+                            tile = (HexagonTile)b;
+
+                        if (a is Bee)
+                            bee = (Bee)a;
+                        else if (b is Bee)
+                            bee = (Bee)b;
+
+                        if (bee != null && tile != null)
+                            Redirect(bee, tile);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void Get(Bee bee, pickup p)
+    {
+        if (bee.carryingObject == null)
+        {
+            p.transform.parent = transform;
+            p.transform.position = bee.pickupPos.position;
+            bee.carryingObject = p.GetComponent<pickup>();
+        }
+    }
+
+    public void Paint(HexagonTile tile, pickup p)
+    {
+        // Fazer aqui o código que muda o tile
+        p.OnConsume();
+        var newTile = p.tilePrefab;
+        // fazer alguma coisa com esse newTile
+    }
+
+    public void Disappear(Bee bee, HexagonTile tile)
+    {
+        if(tile.type == entityTypes.Grid && bee.type != entityTypes.Player)
+        {
+            bee.OnDeath();
+        }
+    }
+
+    public void Redirect(Bee bee, HexagonTile tile)
+    {
+        // Código de redireção da abelha
     }
 }

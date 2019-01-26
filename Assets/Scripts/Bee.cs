@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickup : Entity
+public class Bee : Entity
 {
-    public GameObject tilePrefab;
+    public Transform pickupPos;
+    public pickup carryingObject;
 
-    public virtual void OnConsume()
+    public void OnDeath()
     {
         Destroy(this.gameObject);
     }
-
 }

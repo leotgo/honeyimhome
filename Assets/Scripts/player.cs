@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class player : Bee
 {
-    public Transform pickupPos;
-    public pickup carryingObject;
-
     Grid grid;
     TileChooser tileChooser;
 
@@ -21,7 +18,7 @@ public class player : MonoBehaviour
     {
         if(carryingObject != null)
         {
-            var tile = Instantiate(carryingObject.prefab);
+            var tile = Instantiate(carryingObject.tilePrefab);
             Debug.Log(tileChooser.currentTile);
             tile.transform.position = grid.GetCellCenterWorld(tileChooser.currentTile);
 

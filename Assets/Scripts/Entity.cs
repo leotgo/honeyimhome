@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoneyTile : HexagonTile
+public class Entity : MonoBehaviour
 {
-    
+    public entityTypes type;
 }
