@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TileInfoListManager : MonoBehaviour
 {
-
+    public static TileInfoListManager instance;
     List<TileInfo> tileInfoList;    
 
     private void Start()
     {
+        instance = this;
         tileInfoList = new List<TileInfo>();
     }
 
@@ -23,7 +24,7 @@ public class TileInfoListManager : MonoBehaviour
     {
         int i = 0;
         HexagonTile result = null;
-        while(result == null && i < tileInfoList.Count)
+        while (result == null && i < tileInfoList.Count)
         {
             if (tilePosition == tileInfoList[i].tilePosition)
             {
@@ -31,7 +32,15 @@ public class TileInfoListManager : MonoBehaviour
             }
             i++;
         }
+        if (result == null)
+        {
+            var gridTile = GridTile.instance;
+            gridTile.type = HexagonTile.TileType.Grid;
+            return gridTile;
+        }
+        else
         return result;
+
         
     }
 

@@ -5,16 +5,31 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(PolygonCollider2D))]
-public class HexagonTile : Entity
+public class HexagonTile : MonoBehaviour
 {
+    public enum TileType
+    {
+        Grid,             // Uma célula no grid sem nada, pode virar tile
+        NormalTile,       // Um tile normal (neutro), que não faz nada
+        HoneyTile,        // Produz mel
+        WaxTile,          // Um tile que produz cera
+        LarvaTile,        // Produz larvas
+        PolenTile,        // Produz pólen
+        SecretionTile,    // Produz secreção
+        FlowerTile,       // Produz flores
+        JellyTile,        // Produz Geléia
+        DirectionalTile   // Produz direcionais
+    }
+
     public bool isDirectional = false;
     public Vector3 direction = Vector3.zero;
+    public TileType type;
 
     private TileInfoListManager tileInfoListManager;
     private Grid grid;
     private TileChooser tileChooser;
 
-    private void Start()
+    private void Awake()
     {
         GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
         grid = gridobject.GetComponent<Grid>();
@@ -27,10 +42,9 @@ public class HexagonTile : Entity
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Entity>() != null)
+        var bee = collision.gameObject.GetComponent<Bee>();
+        if (collision.gameObject.GetComponent<Bee>() != null)
         {
-            var entity = collision.gameObject.GetComponent<Entity>();
-            EntitiesInteractions.instance.ProcessInteraction(this, entity);
         }
     }
 }

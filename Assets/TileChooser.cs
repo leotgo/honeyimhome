@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class TileChooser : MonoBehaviour
 {
+    public static TileChooser instance;
+
     GameObject player;
 
     public Grid grid;
@@ -14,6 +16,7 @@ public class TileChooser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         player = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 

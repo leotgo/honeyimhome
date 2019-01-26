@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bee : Entity
+public class Bee : MonoBehaviour
 {
+    public enum BeeType
+    {
+        Bee,
+        Player
+    }
+
     public Transform pickupPos;
     public pickup carryingObject;
 

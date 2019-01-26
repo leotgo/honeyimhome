@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8780325279826002715}
   - component: {fileID: 8421323323742788904}
   m_Layer: 0
-  m_Name: Honey
+  m_Name: Polen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015d6bf9a3d3a4d4a89a30b8b23e940d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   tilePrefab: {fileID: 5670764211204999289, guid: 893e8e1acf43c4b4785623db55216084,
     type: 3}
 --- !u!61 &8421323323742788904
