@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d80b7c2a032248d48af8d0d0944e075a
+timeCreated: 1487367958
+licenseType: Store
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: NintendoSwitch
+  fontNames:
+  - NintendoSwitch
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

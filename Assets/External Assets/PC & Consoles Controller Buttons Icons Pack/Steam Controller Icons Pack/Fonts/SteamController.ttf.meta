@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: cedb90243d9e2a149833603d5293d852
+timeCreated: 1484174534
+licenseType: Store
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SteamController
+  fontNames:
+  - SteamController
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

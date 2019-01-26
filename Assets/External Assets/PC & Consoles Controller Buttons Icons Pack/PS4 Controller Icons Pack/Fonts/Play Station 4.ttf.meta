@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b0cadaa13a390b2459139beecda99c21
+timeCreated: 1481249801
+licenseType: Store
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: PlayStation4
+  fontNames:
+  - PlayStation4
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
