@@ -5,24 +5,17 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(PolygonCollider2D))]
-public abstract class HexagonTile : MonoBehaviour
+public class HexagonTile : Entity
 {
-    UnityEvent<pickup.PickupType> onPickupEvent;
+    public bool isDirectional = false;
+    public Vector3 direction = Vector3.zero;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<pickup>() != null)
+        if(collision.gameObject.GetComponent<Entity>() != null)
         {
-            var pickup = collision.gameObject.GetComponent<pickup>();
-            OnInteract(pickup);
-        }
-        else if(collision.gameObject.GetComponent<player>() != null)
-        {
-            var player = collision.gameObject.GetComponent<player>();
-            OnInteract(player);
+            var entity = collision.gameObject.GetComponent<Entity>();
+            EntitiesInteractions.instance.ProcessInteraction(this, entity);
         }
     }
-
-    protected abstract void OnInteract(pickup pickup);
-    protected abstract void OnInteract(player player);
 }
