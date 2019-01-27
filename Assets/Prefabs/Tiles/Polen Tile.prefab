@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5670764211204999285}
   - component: {fileID: 5670764211204999290}
   - component: {fileID: 5670764211204999288}
-  - component: {fileID: 6636477496260907750}
+  - component: {fileID: 4736105704653718517}
   m_Layer: 0
-  m_Name: Wax
+  m_Name: Polen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26307db50a829a54f8917a91e4136cc8, type: 2}
+  - {fileID: 2100000, guid: 8ccb02bd616d3c845aaeb7fd9858b6ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 801812683
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 26fff85a2d0e25842b403a883884bd00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34da835cfcf20974897c03339068bf5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.88928574, y: 1.0071429}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,7 +103,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.88928574, y: 1.0071429}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.88928574, y: 1.0071429}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -116,7 +116,7 @@ PolygonCollider2D:
       - {x: 0.00000004371139, y: -0.5}
       - {x: 0.43301272, y: -0.24999996}
       - {x: 0.43301272, y: 0.24999996}
---- !u!114 &6636477496260907750
+--- !u!114 &4736105704653718517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,12 +125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5670764211204999289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b50b20fe237a24d9b25f74e4a990bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a9404e0270fc014ba59d189c29398f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDirectional: 0
   direction: {x: 0, y: 0, z: 0}
-  type: 3
-  pickupPrefab: {fileID: 5652023487190938412, guid: 705a75a8ba111464fbd271818b84be33,
+  type: 5
+  pickupPrefab: {fileID: 5652023487190938412, guid: 94dacab847e82f84191d5ccc7d628037,
     type: 3}
   spawnTime: 5

@@ -10,9 +10,6 @@ public class PickupPrefabHolder : MonoBehaviour
     public GameObject waxPickupPrefab;
     public GameObject larvaPickupPrefab;
     public GameObject polenPickupPrefab;
-    public GameObject secretionPickupPrefab;
-    public GameObject flowerPickupPrefab;
-    public GameObject jellyPickupPrefab;
     public GameObject directionalPickupPrefab;
 
     void Start()

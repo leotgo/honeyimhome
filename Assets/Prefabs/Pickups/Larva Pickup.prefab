@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7771941529269724584}
   - component: {fileID: 9020567052495193642}
-  - component: {fileID: 8780325279826002715}
   - component: {fileID: 8421323323742788904}
+  - component: {fileID: 1672577928227204435}
   m_Layer: 0
   m_Name: Larva
   m_TagString: Untagged
@@ -75,27 +75,12 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.4, y: 0.44285715}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8780325279826002715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652023487190938412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015d6bf9a3d3a4d4a89a30b8b23e940d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  tilePrefab: {fileID: 5670764211204999289, guid: cad992658beef8f4eb30d5dc7b8f15ab,
-    type: 3}
 --- !u!61 &8421323323742788904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +99,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.4, y: 0.44285715}
-    newSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.4, y: 0.44285715}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -122,3 +107,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &1672577928227204435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652023487190938412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8b59ca3051a2345bbedf9b6211f137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  tilePrefab: {fileID: 5670764211204999289, guid: cad992658beef8f4eb30d5dc7b8f15ab,
+    type: 3}
