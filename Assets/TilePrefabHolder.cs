@@ -11,6 +11,7 @@ public class TilePrefabHolder : MonoBehaviour
     public GameObject polenTilePrefab;
     public GameObject waxTilePrefab;
     public GameObject larvaTilePrefab;
+    public GameObject normalTilePrefab;
 
     void Start()
     {

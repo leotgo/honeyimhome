@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InControl;
+using UnityEngine.SceneManagement;
 
 public class AbelhaController : MonoBehaviour
 {
@@ -43,7 +44,10 @@ public class AbelhaController : MonoBehaviour
         characterActions.Action.AddDefaultBinding(Key.Space);
         characterActions.Action.AddDefaultBinding(InputControlType.Action1);
 
-        
+        characterActions.Pause.AddDefaultBinding(Key.Escape);
+        characterActions.Action.AddDefaultBinding(InputControlType.Pause);
+
+
     }
 
     void Update()
@@ -51,6 +55,14 @@ public class AbelhaController : MonoBehaviour
         if (characterActions.Action.WasPressed)
         {
             PerformAction();
+        }
+
+        if (characterActions.Pause.WasPressed)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+                Application.Quit();
+            else if (SceneManager.GetActiveScene().buildIndex == 1)
+                SceneManager.LoadScene(0);
         }
 
         // We use the aggregate filter action here.
@@ -91,6 +103,7 @@ public class AbelhaController : MonoBehaviour
         public PlayerAction Up;
         public PlayerAction Down;
         public PlayerAction Action;
+        public PlayerAction Pause;
         public PlayerOneAxisAction MoveHorizontal;
         public PlayerOneAxisAction MoveVertical;
 
@@ -101,6 +114,7 @@ public class AbelhaController : MonoBehaviour
             Up = CreatePlayerAction("Move Up");
             Down = CreatePlayerAction("Move Down");
             Action = CreatePlayerAction("Action");
+            Pause = CreatePlayerAction("Pause");
             MoveHorizontal = CreateOneAxisPlayerAction(Left, Right);
             MoveVertical = CreateOneAxisPlayerAction(Up, Down);
         }

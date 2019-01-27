@@ -19,6 +19,7 @@ public class pickup : MonoBehaviour
 
     public PickupType type;
     public GameObject tilePrefab;
+
     public Bee currentOwner = null;
 
     public LayerMask tileLayerMask;
@@ -60,7 +61,7 @@ public class pickup : MonoBehaviour
         if (collision.gameObject.GetComponent<Bee>() != null)
         {
             var bee = collision.gameObject.GetComponent<Bee>();
-            if(!(bee is player))
+            if(!(bee is player) && currentOwner == null)
                 OnInteractWithBee(bee);
         }
         else if (collision.gameObject.GetComponent<HexagonTile>() != null && currentOwner != null)

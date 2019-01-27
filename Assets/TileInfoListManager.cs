@@ -5,21 +5,16 @@ using UnityEngine;
 public class TileInfoListManager : MonoBehaviour
 {
     public static TileInfoListManager instance;
-    List<TileInfo> tileInfoList;    
+    List<TileInfo> tileInfoList;
+
+    public GameObject initialTile;
 
     private void Start()
     {
-
-
         instance = this;
         tileInfoList = new List<TileInfo>();
 
-
-        var gridTile = GridTile.instance;
-        gridTile.type = HexagonTile.TileType.PolenTile;
-        addTile(gridTile,new Vector3Int(0,0,0));
-
-
+        addTile(initialTile.GetComponent<HexagonTile>(), new Vector3Int(0, 0, 0));
     }
 
     public void addTile(HexagonTile hexagonTile,Vector3Int tilePosition)

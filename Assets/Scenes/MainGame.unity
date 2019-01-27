@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13db0c7fed28024eab19c6cbf2f37b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialTile: {fileID: 2071439644}
 --- !u!4 &818426193
 Transform:
   m_ObjectHideFlags: 0
@@ -855,6 +856,8 @@ MonoBehaviour:
   waxTilePrefab: {fileID: 869132063507192525, guid: 47387c23b68d8a948a9e24e9cd7b9f48,
     type: 3}
   larvaTilePrefab: {fileID: 506093067447681456, guid: 713218d827b1d3c4ca06e15e35c485db,
+    type: 3}
+  normalTilePrefab: {fileID: 8832330720826767732, guid: 955643a444af93d428f938cc0da42161,
     type: 3}
 --- !u!1001 &1114319384
 PrefabInstance:
@@ -1047,7 +1050,6 @@ GameObject:
   - component: {fileID: 1358985380}
   - component: {fileID: 1358985379}
   - component: {fileID: 1358985381}
-  - component: {fileID: 1358985382}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Grid
@@ -1098,18 +1100,6 @@ MonoBehaviour:
   grid: {fileID: 1358985379}
   highlightHex: {fileID: 31609937}
   currentTile: {x: 0, y: 0, z: 0}
---- !u!114 &1358985382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358985378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a13db0c7fed28024eab19c6cbf2f37b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1494294017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1497,6 +1487,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.175282, y: 1.2096233}
   m_EdgeRadius: 0
+--- !u!1 &2071439644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4311289833941834270, guid: 3eca18d1f26286746a3feca2dbbdf661,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494294017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1333084317132215297
 PrefabInstance:
   m_ObjectHideFlags: 0

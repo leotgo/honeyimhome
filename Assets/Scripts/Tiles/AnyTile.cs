@@ -12,6 +12,8 @@ public class AnyTile : HexagonTile
 
     public List<GameObject> entitiesInTile;
 
+    public GameObject currentlyHeldPickup;
+
     private Collider2D coll2D;
 
     private void Start()
@@ -25,12 +27,18 @@ public class AnyTile : HexagonTile
 
     private void Update()
     {
+        if(pickupPrefab != null)
+            HandlePickupSpawn();
+    }
+
+    private void HandlePickupSpawn()
+    {
         if (!canSpawn)
             currentTime = 0f;
         else
             currentTime += Time.deltaTime;
 
-        if(currentTime > spawnTime && canSpawn)
+        if (currentTime > spawnTime && canSpawn)
         {
             SpawnPickup();
             currentTime = 0f;
@@ -40,9 +48,9 @@ public class AnyTile : HexagonTile
 
     private void SpawnPickup()
     {
-        var pickup = Instantiate(pickupPrefab);
+        var pickup = Instantiate(pickupPrefab).GetComponent<pickup>();
+        currentlyHeldPickup = pickup.gameObject;
         pickup.transform.position = transform.position;
-        pickup pickupclass = pickup.GetComponent<pickup>();
-        pickupclass.spawner = this.gameObject;
+        pickup.spawner = gameObject;
     }
 }
