@@ -11,10 +11,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5670764211204999285}
   - component: {fileID: 5670764211204999290}
-  - component: {fileID: 5670764211204999291}
   - component: {fileID: 5670764211204999288}
+  - component: {fileID: 2282827820763407681}
   m_Layer: 0
-  m_Name: Jelly
+  m_Name: NormalTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 233b6548463214a4ab3a53cd33205d24, type: 2}
+  - {fileID: 2100000, guid: b49e74ef60f4f854fad15cd95b2bd6ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 801812683
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8a17eeb616ba11340807ed8786db037d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee9754aba3c216046a60458c795fcdf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5670764211204999291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6248164968282823670, guid: 893e8e1acf43c4b4785623db55216084,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5670764211204999289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6039802fb0c186479f824433d0b70dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDirectional: 0
-  direction: {x: 0, y: 0, z: 0}
-  type: 13
-  pickupPrefab: {fileID: 5652023487190938412, guid: 4698c7c38e82b9540847acf368e558f4,
-    type: 3}
-  spawnTime: 5
 --- !u!60 &5670764211204999288
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -121,7 +102,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.88928574, y: 1.0071429}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,3 +116,18 @@ PolygonCollider2D:
       - {x: 0.00000004371139, y: -0.5}
       - {x: 0.43301272, y: -0.24999996}
       - {x: 0.43301272, y: 0.24999996}
+--- !u!114 &2282827820763407681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670764211204999289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56ae2ddb1c2d843b8b8a86f2cdcfcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDirectional: 0
+  direction: {x: 0, y: 0, z: 0}
+  type: 10

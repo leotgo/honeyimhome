@@ -41,6 +41,12 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
+    uniqueID: 3984254715
+    locked: 0
+  - name: HighlightHex
+    uniqueID: 1951677271
+    locked: 0
+  - name: Tiles
     uniqueID: 801812683
     locked: 0
   - name: Default
@@ -48,4 +54,7 @@ TagManager:
     locked: 0
   - name: Pickup
     uniqueID: 3896581563
+    locked: 0
+  - name: Player
+    uniqueID: 2359431225
     locked: 0
