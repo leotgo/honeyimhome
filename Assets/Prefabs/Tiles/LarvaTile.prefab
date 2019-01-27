@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 506093067447681459}
   - component: {fileID: 506093067447681458}
   - component: {fileID: 506093067447681457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LarvaTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &506093067625391576
 Transform:
@@ -130,4 +130,5 @@ MonoBehaviour:
   pickupPrefab: {fileID: 5396262161097699018, guid: 38c42c8ae41072e4eb5a324b8b3bdc0f,
     type: 3}
   spawnTime: 5
-  wasPicked: 1
+  canSpawn: 1
+  entitiesInTile: []

@@ -35,7 +35,6 @@ public class TileInfoListManager : MonoBehaviour
         bool result = true;
         while (result && i < tileInfoList.Count)
         {
-            Debug.Log(tileInfoList[i].tilePosition+"    "+ tilePosition);
             if (tilePosition == tileInfoList[i].tilePosition)
             {
                 result = false;

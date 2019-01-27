@@ -12,10 +12,13 @@ public class WaxPickup : pickup
                 CombineToNewEntity(other, PickupPrefabHolder.instance.larvaPickupPrefab);
                 break;
             case PickupType.Larva:
-                CombineToNewEntity(other, EntityPrefabHolder.instance.beePrefab);
+                CombineToNewEntity(other, PickupPrefabHolder.instance.directionalPickupPrefab);
                 break;
             case PickupType.Polen:
-                CombineToNewEntity(other, PickupPrefabHolder.instance.waxPickupPrefab);
+                CombineToNewEntity(other, PickupPrefabHolder.instance.larvaPickupPrefab);
+                break;
+            case PickupType.Wax:
+                CombineToNewEntity(other, PickupPrefabHolder.instance.polenPickupPrefab);
                 break;
         }
     }

@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 5670764211204999285}
   - component: {fileID: 5670764211204999290}
   - component: {fileID: 5670764211204999288}
-  m_Layer: 0
-  m_Name: Directional
+  - component: {fileID: 6312808509005225982}
+  m_Layer: 8
+  m_Name: Directional Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5670764211204999285
 Transform:
@@ -115,3 +116,23 @@ PolygonCollider2D:
       - {x: 0.00000004371139, y: -0.5}
       - {x: 0.43301272, y: -0.24999996}
       - {x: 0.43301272, y: 0.24999996}
+--- !u!114 &6312808509005225982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670764211204999289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e12bc893590f7b48a7c054e03a0492c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDirectional: 1
+  directionalPickup: {fileID: 0}
+  type: 9
+  pickupPrefab: {fileID: 5652023487190938412, guid: ec60b4be0b5581e4f927e4ccfd1c99f0,
+    type: 3}
+  spawnTime: 5
+  canSpawn: 1
+  entitiesInTile: []

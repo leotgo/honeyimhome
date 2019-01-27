@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 5670764211204999290}
   - component: {fileID: 5670764211204999288}
   - component: {fileID: 2282827820763407681}
-  m_Layer: 0
-  m_Name: GridTile
+  m_Layer: 8
+  m_Name: Grid Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5670764211204999285
 Transform:
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.88928574, y: 1.0071429}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,7 +103,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.88928574, y: 1.0071429}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.88928574, y: 1.0071429}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

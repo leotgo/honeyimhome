@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 869132063507192562}
   - component: {fileID: 869132063507192563}
   - component: {fileID: 869132063507192524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaxTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &869132064319482363
 Transform:
@@ -130,4 +130,5 @@ MonoBehaviour:
   pickupPrefab: {fileID: 4898979454810004384, guid: 357acf84d58df8240974a2b5b04c3725,
     type: 3}
   spawnTime: 5
-  wasPicked: 1
+  canSpawn: 1
+  entitiesInTile: []

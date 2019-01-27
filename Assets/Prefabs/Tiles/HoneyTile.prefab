@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 8832330720826767735}
   - component: {fileID: 8832330720826767734}
   - component: {fileID: 8832330720826767733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HoneyTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8832330721189218528
 Transform:
@@ -130,4 +130,5 @@ MonoBehaviour:
   pickupPrefab: {fileID: 2463291368315203367, guid: b383ac3480802b545b36f0e6728fa4b2,
     type: 3}
   spawnTime: 5
-  wasPicked: 1
+  canSpawn: 1
+  entitiesInTile: []

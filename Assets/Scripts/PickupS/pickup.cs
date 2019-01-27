@@ -19,38 +19,88 @@ public class pickup : MonoBehaviour
 
     public PickupType type;
     public GameObject tilePrefab;
+    public Bee currentOwner = null;
+
+    public LayerMask tileLayerMask;
+    public LayerMask pickupLayerMask;
+
+    private bool interactable = false;
+    private float animationTime;
+    protected Vector3 originalScale;
+
+    private void Awake()
+    {
+        interactable = true;
+        currentOwner = null;
+        animationTime = 0.5f;
+        originalScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+    }
+
+    protected virtual void Update()
+    {
+        if (currentOwner == null)
+            PickupAnim();
+        else
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, 5.0f*Time.deltaTime);
+
+        Collider2D collTile = Physics2D.OverlapPoint(transform.position, tileLayerMask.value);
+        if (collTile != null)
+            collTile.gameObject.GetComponent<AnyTile>().canSpawn = false;
+
+        if (currentOwner != null)
+            transform.position = Vector3.Lerp(transform.position, currentOwner.pickupPos.position, 10.0f * Time.deltaTime);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!interactable)
+            return;
+
         if (collision.gameObject.GetComponent<Bee>() != null)
         {
             var bee = collision.gameObject.GetComponent<Bee>();
-            OnInteractWithBee(bee);
+            if(!(bee is player))
+                OnInteractWithBee(bee);
         }
-        else if (collision.gameObject.GetComponent<HexagonTile>() != null)
+        else if (collision.gameObject.GetComponent<HexagonTile>() != null && currentOwner != null)
         {
             HexagonTile tile = collision.gameObject.GetComponent<HexagonTile>();
             OnInteractWithTile(tile);
         }
-        else if (collision.gameObject.GetComponent<pickup>() != null)
+        else if (collision.gameObject.GetComponent<pickup>() != null && currentOwner != null)
         {
             var p = collision.gameObject.GetComponent<pickup>();
             OnInteractWithPickup(p);
         }
     }
 
+    public void PickupAnim()
+    {
+        animationTime += Time.deltaTime;
+        if (animationTime > 2f)
+            animationTime = 0f;
+
+        var targetScale = originalScale * (1.25f + Mathf.Sin(animationTime * 180f * Mathf.Deg2Rad) * 0.25f);
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 5.0f * Time.deltaTime);
+    }
+
     public virtual void OnConsume()
     {
-        AnyTile anyTile = spawner.GetComponent<AnyTile>();
-        anyTile.wasPicked = true;
         Destroy(this.gameObject);
     }
 
     public void CombineToNewEntity(pickup other, GameObject prefab)
     {
-
-        var newPickup = Instantiate(prefab);
-        newPickup.transform.position = transform.position;
+        this.interactable = false;
+        other.interactable = false;
+        var newEntity = Instantiate(prefab);
+        newEntity.transform.position = other.transform.position;
+        if (newEntity.GetComponent<pickup>() != null)
+        {
+            newEntity.GetComponent<pickup>().currentOwner = this.currentOwner;
+            this.currentOwner.carryingObject = newEntity.GetComponent<pickup>();
+        }
         this.OnConsume();
         other.OnConsume();
     }
@@ -62,10 +112,11 @@ public class pickup : MonoBehaviour
 
     public virtual void OnInteractWithBee(Bee bee)
     {
-        if (bee.carryingObject == null)
+        if (bee.carryingObject == null && type != PickupType.Directional)
         {
-            transform.parent = bee.transform;
-            transform.position = bee.pickupPos.position;
+            if (currentOwner != null)
+                currentOwner.carryingObject = null;
+            currentOwner = bee;
             bee.carryingObject = this;
         }
     }

@@ -17,12 +17,16 @@ public class PolenPickup : pickup
             case PickupType.Larva:
                 CombineToNewEntity(other, EntityPrefabHolder.instance.beePrefab);
                 break;
+            case PickupType.Polen:
+                CombineToNewEntity(other, PickupPrefabHolder.instance.honeyPickupPrefab);
+                break;
+            
         }
     }
 
     public override void OnInteractWithTile(HexagonTile tile)
     {
-
+        Debug.Log("Interacting with tile " + tile.name);
     }
 
 }

@@ -9,6 +9,7 @@ public class AbelhaController : MonoBehaviour
     public Vector2 movementvector;
 
     public float strength = 2.0f;
+    public float angularSpeed = 5.0f;
     
     bool hasMoved = false;
     float moveHorizontal;
@@ -62,7 +63,7 @@ public class AbelhaController : MonoBehaviour
 
     void PerformAction()
     {
-        a_player.spawnTile();
+        a_player.Interact();
     }
 
     void PerformMove(float moveHorizontal, float moveVertical)
@@ -70,20 +71,17 @@ public class AbelhaController : MonoBehaviour
         moveVertical = moveVertical * -1;
         movementvector = new Vector2(moveHorizontal, moveVertical);
 
-        /* 
-         //Use the two store floats to create a new Vector2 variable movement.
-         Vector2 movement = new Vector2(x*(-1), y);
-
-         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-         rb2d.AddForce(movement * speed);
-         */
-
         Vector3 dir = new Vector3(moveHorizontal, moveVertical, 0f).normalized;
-        //Debug.Log(dir * strength);
-        GetComponent<Rigidbody2D>().AddForce(dir * strength, ForceMode2D.Force);
+
+        if (dir.magnitude > 0.15f)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle - 90f, Vector3.forward), angularSpeed * Time.deltaTime);
+        }
+
+        Vector3 moveDir = dir;
+        GetComponent<Rigidbody2D>().AddForce(dir.magnitude * moveDir * strength, ForceMode2D.Force);
         hasMoved = true;
-
-
     }
 
     public class MyCharacterActions : PlayerActionSet

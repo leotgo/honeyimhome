@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4311289833941834265}
   - component: {fileID: 4311289833941834264}
   - component: {fileID: 4311289833941834271}
-  m_Layer: 0
+  - component: {fileID: 8032559599553567957}
+  m_Layer: 8
   m_Name: PolenTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4311289835514408538
 Transform:
@@ -130,4 +131,26 @@ MonoBehaviour:
   pickupPrefab: {fileID: 4768835403912239770, guid: 13d4374949d18ec40b15e1b009730a11,
     type: 3}
   spawnTime: 5
-  wasPicked: 1
+  canSpawn: 1
+  entitiesInTile: []
+--- !u!50 &8032559599553567957
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4311289833941834270}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

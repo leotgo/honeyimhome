@@ -21,8 +21,9 @@ public class HexagonTile : MonoBehaviour
         DirectionalTile   // Produz direcionais
     }
 
-    public bool isDirectional = false;
-    public Vector3 direction = Vector3.zero;
+    public bool isDirectional = true;
+    public GameObject directionalPickup = null;
+
     public TileType type;
 
     private TileInfoListManager tileInfoListManager;
@@ -38,13 +39,5 @@ public class HexagonTile : MonoBehaviour
         tileInfoListManager = tileInfoListManagerObject.GetComponent<TileInfoListManager>();
 
         //tileInfoListManager.DeleteTile(tileChooser.currentTile);
-    }
-
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        var bee = collision.gameObject.GetComponent<Bee>();
-        if (collision.gameObject.GetComponent<Bee>() != null)
-        {
-        }
     }
 }

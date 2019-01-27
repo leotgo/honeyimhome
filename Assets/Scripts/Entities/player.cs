@@ -4,44 +4,96 @@ using UnityEngine;
 
 public class player : Bee
 {
+    public LayerMask pickupLayerMask;
 
-    [SerializeField]
-    private Sprite[] playerSprites;
-    private int currFrameIndex = 0;
-    private float animTime = 0.04f;
-    private float currTime = 0f;
-
-    Grid grid;
-
-    private void Start()
+    protected override void Update()
     {
-        GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
-        grid = gridobject.GetComponent<Grid>();
-        currFrameIndex = 0;
-        currTime = 0f;
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            SpawnTileOfType(HexagonTile.TileType.PolenTile);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            SpawnTileOfType(HexagonTile.TileType.HoneyTile);
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            SpawnTileOfType(HexagonTile.TileType.WaxTile);
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            SpawnTileOfType(HexagonTile.TileType.LarvaTile);
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            SpawnTileOfType(HexagonTile.TileType.DirectionalTile);
     }
 
-    private void Update()
+    public void SpawnTileOfType(HexagonTile.TileType type)
     {
-        currTime += Time.deltaTime;
-        if(currTime > animTime)
+        GameObject prefab;
+        switch(type)
         {
-            currTime = 0;
-            currFrameIndex = (currFrameIndex == playerSprites.Length - 1) ? 0 : currFrameIndex + 1;
-            GetComponent<SpriteRenderer>().sprite = playerSprites[currFrameIndex];
+            case HexagonTile.TileType.DirectionalTile:
+                prefab = TilePrefabHolder.instance.directionalTilePrefab;
+                break;
+            case HexagonTile.TileType.HoneyTile:
+                prefab = TilePrefabHolder.instance.honeyTilePrefab;
+                break;
+            case HexagonTile.TileType.LarvaTile:
+                prefab = TilePrefabHolder.instance.larvaTilePrefab;
+                break;
+            case HexagonTile.TileType.PolenTile:
+                prefab = TilePrefabHolder.instance.polenTilePrefab;
+                break;
+            case HexagonTile.TileType.WaxTile:
+                prefab = TilePrefabHolder.instance.waxTilePrefab;
+                break;
+            default:
+                return;
         }
+        var t = Instantiate(prefab);
+        t.transform.position = GridCache.grid.GetCellCenterWorld(TileChooser.instance.currentTile);
+        TileInfoListManager.instance.addTile(t.GetComponent<HexagonTile>(), TileChooser.instance.currentTile);
     }
 
-    public void spawnTile()
+    public void Interact()
     {
-        if(carryingObject != null && TileInfoListManager.instance.tileIsEmpty(TileChooser.instance.currentTile)) 
+        if (carryingObject != null)
         {
-            //Debug.Log("ta vazio!");
-            var t = Instantiate(carryingObject.tilePrefab);
-            t.transform.position = grid.GetCellCenterWorld(TileChooser.instance.currentTile);
-            TileInfoListManager.instance.addTile(t.GetComponent<HexagonTile>(), TileChooser.instance.currentTile);
-            carryingObject.OnConsume();
-            
+            if (TileInfoListManager.instance.tileIsEmpty(TileChooser.instance.currentTile))
+            {
+                var t = Instantiate(carryingObject.tilePrefab);
+                t.transform.position = GridCache.grid.GetCellCenterWorld(TileChooser.instance.currentTile);
+                TileInfoListManager.instance.addTile(t.GetComponent<HexagonTile>(), TileChooser.instance.currentTile);
+                carryingObject.OnConsume();
+            }
+            else if (carryingObject.type == pickup.PickupType.Directional)
+            {
+                var tile = TileInfoListManager.instance.getHexagonTile(TileChooser.instance.currentTile);
+                if (tile.type != HexagonTile.TileType.DirectionalTile && !tile.isDirectional)
+                {
+                    carryingObject.currentOwner = null;
+                    tile.isDirectional = true;
+                    tile.directionalPickup = carryingObject.gameObject;
+                    ((DirectionalPickup)carryingObject).ownerTile = tile;
+                    carryingObject = null;
+                }
+            }
+        }
+        else
+        {
+            var collPickup = Physics2D.OverlapCircle(transform.position, 0.5f, pickupLayerMask.value);
+            if(collPickup != null)
+            {
+                var p = collPickup.GetComponent<pickup>();
+                if (p.currentOwner != null)
+                    p.currentOwner.carryingObject = null;
+                p.currentOwner = this;
+                carryingObject = p;
+                if (p is DirectionalPickup)
+                {
+                    var directionalPickup = (DirectionalPickup)p;
+                    if (directionalPickup.ownerTile != null)
+                    {
+                        directionalPickup.ownerTile.isDirectional = false;
+                        directionalPickup.ownerTile.directionalPickup = null;
+                        directionalPickup.ownerTile = null;
+                    }
+                }
+            }
         }
     }
 }
