@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
+    public GameObject spawner;
     public enum PickupType
     {
         Honey,       // OBJETO de mel, que abelha pode pegar
@@ -40,11 +41,14 @@ public class pickup : MonoBehaviour
 
     public virtual void OnConsume()
     {
+        AnyTile anyTile = spawner.GetComponent<AnyTile>();
+        anyTile.wasPicked = true;
         Destroy(this.gameObject);
     }
 
     public void CombineToNewEntity(pickup other, GameObject prefab)
     {
+
         var newPickup = Instantiate(prefab);
         newPickup.transform.position = transform.position;
         this.OnConsume();

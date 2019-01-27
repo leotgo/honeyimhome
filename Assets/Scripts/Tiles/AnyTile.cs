@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoneyTile : HexagonTile
+public class AnyTile : HexagonTile
 {
     public GameObject pickupPrefab;
     public float spawnTime = 5f;
     private float currentTime = 0f;
+    public bool wasPicked = true;
 
     private void Start()
     {
@@ -16,9 +17,14 @@ public class HoneyTile : HexagonTile
     private void Update()
     {
         currentTime += Time.deltaTime;
-        if(currentTime > spawnTime)
+        if(currentTime > spawnTime && wasPicked)
         {
             SpawnPickup();
+            currentTime = 0f;
+            wasPicked = false;
+        }
+        if(wasPicked == false)
+        {
             currentTime = 0f;
         }
     }
@@ -27,5 +33,7 @@ public class HoneyTile : HexagonTile
     {
         var pickup = Instantiate(pickupPrefab);
         pickup.transform.position = transform.position;
+        pickup pickupclass = pickup.GetComponent<pickup>();
+        pickupclass.spawner = this.gameObject;
     }
 }

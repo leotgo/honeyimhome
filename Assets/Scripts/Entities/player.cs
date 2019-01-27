@@ -11,8 +11,12 @@ public class player : Bee
     private float animTime = 0.04f;
     private float currTime = 0f;
 
+    Grid grid;
+
     private void Start()
     {
+        GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
+        grid = gridobject.GetComponent<Grid>();
         currFrameIndex = 0;
         currTime = 0f;
     }
@@ -30,14 +34,14 @@ public class player : Bee
 
     public void spawnTile()
     {
-        if(carryingObject != null)
+        if(carryingObject != null && TileInfoListManager.instance.tileIsEmpty(TileChooser.instance.currentTile)) 
         {
-            GameObject gridobject = GameObject.FindGameObjectWithTag("Grid");
-            Grid grid = gridobject.GetComponent<Grid>();
+            //Debug.Log("ta vazio!");
             var t = Instantiate(carryingObject.tilePrefab);
             t.transform.position = grid.GetCellCenterWorld(TileChooser.instance.currentTile);
             TileInfoListManager.instance.addTile(t.GetComponent<HexagonTile>(), TileChooser.instance.currentTile);
             carryingObject.OnConsume();
+            
         }
     }
 }

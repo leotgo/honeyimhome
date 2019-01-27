@@ -9,8 +9,17 @@ public class TileInfoListManager : MonoBehaviour
 
     private void Start()
     {
+
+
         instance = this;
         tileInfoList = new List<TileInfo>();
+
+
+        var gridTile = GridTile.instance;
+        gridTile.type = HexagonTile.TileType.PolenTile;
+        addTile(gridTile,new Vector3Int(0,0,0));
+
+
     }
 
     public void addTile(HexagonTile hexagonTile,Vector3Int tilePosition)
@@ -18,6 +27,22 @@ public class TileInfoListManager : MonoBehaviour
         TileInfo tileInfo = new TileInfo(tilePosition,hexagonTile);
         tileInfoList.Add(tileInfo);
 
+    }
+
+    public bool tileIsEmpty(Vector3Int tilePosition)
+    {
+        int i = 0;
+        bool result = true;
+        while (result && i < tileInfoList.Count)
+        {
+            Debug.Log(tileInfoList[i].tilePosition+"    "+ tilePosition);
+            if (tilePosition == tileInfoList[i].tilePosition)
+            {
+                result = false;
+            }
+            i++;
+        }
+        return result;
     }
 
     public HexagonTile getHexagonTile(Vector3Int tilePosition)
