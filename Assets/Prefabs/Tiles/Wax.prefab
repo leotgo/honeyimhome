@@ -11,8 +11,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5670764211204999285}
   - component: {fileID: 5670764211204999290}
-  - component: {fileID: 5670764211204999291}
   - component: {fileID: 5670764211204999288}
+  - component: {fileID: 6636477496260907750}
   m_Layer: 0
   m_Name: Wax
   m_TagString: Untagged
@@ -84,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5670764211204999291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6248164968282823670, guid: 893e8e1acf43c4b4785623db55216084,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5670764211204999289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6039802fb0c186479f824433d0b70dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDirectional: 0
-  direction: {x: 0, y: 0, z: 0}
-  type: 13
-  pickupPrefab: {fileID: 5652023487190938412, guid: 4698c7c38e82b9540847acf368e558f4,
-    type: 3}
-  spawnTime: 5
 --- !u!60 &5670764211204999288
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +116,21 @@ PolygonCollider2D:
       - {x: 0.00000004371139, y: -0.5}
       - {x: 0.43301272, y: -0.24999996}
       - {x: 0.43301272, y: 0.24999996}
+--- !u!114 &6636477496260907750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670764211204999289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b50b20fe237a24d9b25f74e4a990bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDirectional: 0
+  direction: {x: 0, y: 0, z: 0}
+  type: 3
+  pickupPrefab: {fileID: 5652023487190938412, guid: 705a75a8ba111464fbd271818b84be33,
+    type: 3}
+  spawnTime: 5
