@@ -9,9 +9,11 @@ This is the source code-only repository for Global Game Jam 2019 entry "Honey, I
 
 For the assets, please visit the asset repository: [ggj2019-assets](https://github.com/leotgo/ggj2019-assets).
 
-The game can be downloaded on [itch.io](https://camilaperes.itch.io/honey-im-home).
-
 **IMPORTANT NOTICE: Since this was game was made in under 48 hours, this repository features terrible code practices and last-minute solutions. Do NOT use this as reference for production-quality projects!**
+
+## Download
+
+The game can be downloaded on [itch.io](https://camilaperes.itch.io/honey-im-home).
 
 ## Screenshots
 
