@@ -7,9 +7,11 @@
 
 This is the source code-only repository for Global Game Jam 2019 entry "Honey, I'm Home!".
 
-For the assets, please visit the asset repository: [ggj2019-asets](https://github.com/leotgo/ggj2019-assets).
+For the assets, please visit the asset repository: [ggj2019-assets](https://github.com/leotgo/ggj2019-assets).
 
 The game can be downloaded on [itch.io](https://camilaperes.itch.io/honey-im-home).
+
+**IMPORTANT NOTICE: Since this was game was made in under 48 hours, this repository features terrible code practices and last-minute solutions. Do NOT use this as reference for production-quality projects!**
 
 ## Screenshots
 
@@ -22,18 +24,18 @@ The game can be downloaded on [itch.io](https://camilaperes.itch.io/honey-im-hom
 *Left to right: Jéssica Lorencetti, Leonardo Tagliaro, Victória Périco, Camila Peres, Lucas Molina, Bernardo Braga, João Henz*
 
 ### Programming
-* Bernardo Braga
-* João Henz
+* Bernardo Braga ([itch.io](https://garland-chaos.itch.io/))
+* João Henz ([itch.io](https://joaohenz.itch.io/))
 * Leonardo Tagliaro ([itch.io](https://leotgo.itch.io), [github](https://github.com/leotgo))
 
 ### Art
 * Camila Peres ([itch.io](https://camilaperes.itch.io))
-* Victória Périco
+* Victória Périco ([itch.io](https://vick-perico.itch.io/))
 
 ### Music & Game Design
 
-* Lucas Molina (itch.io, Github)
+* Lucas Molina ([itch.io](https://lucasmolina.itch.io/))
 
 ### Audio
 
-* Jéssica Lorencetti
+* Jéssica Lorencetti ([itch.io](https://tsukihime.itch.io/))
