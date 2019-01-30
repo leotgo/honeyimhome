@@ -11,7 +11,15 @@ For the assets, please visit the asset repository: [ggj2019-asets](https://githu
 
 The game can be downloaded on [itch.io](https://camilaperes.itch.io/honey-im-home).
 
+## Screenshots
+
+<img src="https://img.itch.zone/aW1hZ2UvMzYxNTEyLzE4MDg0NTcucG5n/original/pZIBsk.png" width="400"> <img src="https://img.itch.zone/aW1hZ2UvMzYxNTEyLzE4MDg0NTYucG5n/original/sAkG7V.png" width="400">
+
 ## Team
+
+![Team picture](https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/team_picture/2019/01/127248/fotoequipe_0.png)
+
+*Left to right: Jéssica Lorencetti, Leonardo Tagliaro, Victória Périco, Camila Peres, Lucas Molina, Bernardo Braga, João Henz*
 
 ### Programming
 * Bernardo Braga
